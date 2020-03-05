@@ -44,11 +44,12 @@
         <div class="navbar-header">
           <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#custom-collapse"><span
               class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span
-              class="icon-bar"></span></button><a class="navbar-brand" href="#">payblog</a>
+              class="icon-bar"></span></button><a class="navbar-brand" href="{% url 'blog:index' %}">payblog</a>
         </div>
         <div class="collapse navbar-collapse" id="custom-collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">Home</a></li>
+            <li class="dropdown"><a class="dropdown-toggle" href="{% url 'blog:index' %}"
+                data-toggle="dropdown">Home</a></li>
             <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">ログイン</a></li>
           </ul>
         </div>

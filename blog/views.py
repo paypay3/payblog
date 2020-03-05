@@ -1,4 +1,4 @@
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 
 from .models import Post
 
@@ -9,3 +9,7 @@ class BlogListView(ListView):
 
     def get_queryset(self):
         return Post.objects.order_by('-created_at')
+
+
+class BlogDetailView(DetailView):
+    model = Post
