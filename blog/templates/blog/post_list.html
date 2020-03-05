@@ -8,7 +8,7 @@
   <div class="post-thumbnail"><a href="#"><img src="{{ post.image.url }}" alt="Blog-post image" /></a>
   </div>
   <div class="post-header font-alt">
-    <h2 class="post-title"><a href="#">{{ post.title }}</a></h2>
+    <h2 class="post-title"><a href="{% url 'blog:detail' post.pk %}">{{ post.title }}</a></h2>
     <div class="post-meta">By<a href="#">{{ user.username }}</a>| {{ post.created_at }} | <a
         href="#">{{ post.category }}</a>
     </div>
@@ -16,7 +16,7 @@
   <div class="post-entry">
     <p>{{ post.summary }} ...</p>
   </div>
-  <div class="post-more"><a class="more-link" href="#">Read more</a></div>
+  <div class="post-more"><a class="more-link" href="{% url 'blog:detail' post.pk %}">Read more</a></div>
 </div>
 {% endfor %}
 
