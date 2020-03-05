@@ -13,5 +13,6 @@
     <div class="post-entry">
         <p>{{ post.text }}</p>
     </div>
+    <a href="{% url 'blog:update' post.pk %}" class="btn btn-primary">編集</a>
 </div>
 {% endblock %}
