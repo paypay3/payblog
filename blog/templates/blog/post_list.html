@@ -20,4 +20,34 @@
 </div>
 {% endfor %}
 
+{% if is_paginated %}
+<nav>
+  <ul class="pagination">
+    {% if page_obj.has_previous %}
+    <li>
+      <a href="?page={{ page_obj.previous_page_number }}" aria-label="Previous"><span aria-hidden="true">«</span></a>
+    </li>
+    {% else %}
+    <li class="disabled">
+      <a href="#" aria-label="Previous">«</a>
+    </li>
+    {% endif %}
+    {% for page in paginator.page_range %}
+    <li{% if page == page_obj.number %} class="active" {% endif %}>
+      <a href="?page={{ page }}">{{ page }}</a>
+      </li>
+      {% endfor %}
+      {% if page_obj.has_next %}
+      <li>
+        <a href="?page={{ page_obj.next_page_number }}" aria-label="Next"><span aria-hidden="true">»</span></a>
+      </li>
+      {% else %}
+      <li class="disabled">
+        <a href="#" aria-label="Previous">»</a>
+      </li>
+      {% endif %}
+  </ul>
+</nav>
+{% endif %}
+
 {% endblock %}
