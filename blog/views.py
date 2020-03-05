@@ -1,5 +1,7 @@
-from django.views.generic import ListView, DetailView
+from django.urls import reverse_lazy
+from django.views.generic import ListView, DetailView, CreateView
 
+from .forms import PostForm
 from .models import Post
 
 
@@ -13,3 +15,9 @@ class BlogListView(ListView):
 
 class BlogDetailView(DetailView):
     model = Post
+
+
+class BlogCreateView(CreateView):
+    model = Post
+    form_class = PostForm
+    success_url = reverse_lazy("blog:index")
