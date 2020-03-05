@@ -21,3 +21,4 @@ class BlogCreateView(CreateView):
     model = Post
     form_class = PostForm
     success_url = reverse_lazy("blog:index")
+    template_name = "blog/post_create_form.html"
