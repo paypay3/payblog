@@ -70,6 +70,22 @@
       <!-- Main Content ================================================== -->
       <section class="module">
         <div class="container">
+
+          {% if messages %}
+          <ul class="list-unstyled">
+            {% for message in messages %}
+            <li {% if message.tags %}
+              class="bg-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %} alert"
+              {% endif %}>
+              {{ message }}
+              <button type="button" class="close" aria-label="Close" data-dismiss="alert">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </li>
+            {% endfor %}
+          </ul>
+          {% endif%}
+
           <div class="row">
             <div class="col-sm-8">
               {% block content %}
@@ -96,8 +112,8 @@
     <div class="scroll-up"><a href="#totop"><i class="fa fa-angle-double-up"></i></a></div>
   </main>
   <!-- JavaScripts ============================================= -->
-  <script src="{% static 'lib/bootstrap/dist/js/bootstrap.min.js' %}"></script>
   <script src="{% static 'lib/jquery/dist/jquery.js' %}"></script>
+  <script src="{% static 'lib/bootstrap/dist/js/bootstrap.js' %}"></script>
   <script src="{% static 'lib/wow/dist/wow.js' %}"></script>
   <script src="{% static 'lib/jquery.mb.ytplayer/dist/jquery.mb.YTPlayer.js' %}"></script>
   <script src="{% static 'lib/isotope/dist/isotope.pkgd.js' %}"></script>
