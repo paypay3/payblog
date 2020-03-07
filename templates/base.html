@@ -38,7 +38,7 @@
     <div class="page-loader">
       <div class="loader">Loading...</div>
     </div>
-    <!-- Navbar ================================================== -->
+    <!-- ======================= Navbar ======================= -->
     <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
@@ -67,7 +67,7 @@
         </div>
       </div>
     </nav>
-    <!-- Page Header ================================================== -->
+    <!-- ======================= Page Header ======================= -->
     <div class="main">
       <section class="module bg-dark-60 blog-page-header" data-background="{% static 'images/moaizou.jpg' %}">
         <div class="container">
@@ -79,7 +79,7 @@
           </div>
         </div>
       </section>
-      <!-- Main Content ================================================== -->
+      <!-- ======================= Main Content ======================= -->
       <section class="module">
         <div class="container">
 
@@ -103,8 +103,18 @@
               {% block content %}
               {% endblock %}
             </div>
-            <!-- category ================================================== -->
+            <!-- ======================= Side Bar =======================-->
             <div class="col-sm-4 col-md-3 col-md-offset-1 sidebar">
+              <!-- Search Form ================================================== -->
+              <div class="widget">
+                <form role="form" method="Get" action="{% url 'blog:index' %}">
+                  <div class="search-box">
+                    <input class="form-control" type="text" placeholder="記事を検索" aria-label="Search" name="keyword">
+                    <button class="search-btn" type="submit"><i class="fa fa-search"></i></button>
+                  </div>
+                </form>
+              </div>
+              <!-- category List ================================================== -->
               <div class="widget">
                 <h5 class="widget-title font-alt">Blog Categories</h5>
                 <ul class="icon-list">
@@ -119,7 +129,7 @@
       </section>
       <hr class="divider-d">
 
-      <!-- Footer ================================================== -->
+      <!-- ======================= Footer ======================= -->
       <footer class="footer bg-dark">
         <div class="container">
           <div class="row">
