@@ -50,7 +50,16 @@
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown"><a class="dropdown-toggle" href="{% url 'blog:index' %}"
                 data-toggle="dropdown">Home</a></li>
-            <li class="dropdown"><a class="dropdown-toggle" href="#" data-toggle="dropdown">ログイン</a></li>
+
+            {% if user.is_authenticated %}
+            {# ログインしている時 #}
+            <li><a class="dropdown-toggle" href="#" data-toggle="dropdown">{{ user.username }}</a></li>
+            <li><a class="dropdown-toggle" href="{% url 'blog:logout' %}" data-toggle="dropdown">ログアウト</a></li>
+            {%  else %}
+            {# ログインしていない時 #}
+            <li><a class="dropdown-toggle" href="{% url 'blog:login' %}" data-toggle="dropdown">ログイン</a></li>
+            {% endif %}
+
           </ul>
         </div>
       </div>

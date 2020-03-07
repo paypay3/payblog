@@ -3,7 +3,9 @@
 
 {% block content %}
 
+{% if user.is_authenticated %}
 <p><a href="{% url 'blog:create' %}" class="btn btn-primary">New</a></p>
+{% endif %}
 
 <div class="post">
   {% for post in post_list %}
