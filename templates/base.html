@@ -103,6 +103,17 @@
               {% block content %}
               {% endblock %}
             </div>
+            <!-- category ================================================== -->
+            <div class="col-sm-4 col-md-3 col-md-offset-1 sidebar">
+              <div class="widget">
+                <h5 class="widget-title font-alt">Blog Categories</h5>
+                <ul class="icon-list">
+                  {% for category in category_list %}
+                  <li><a href="{% url 'blog:category' category.pk %}">{{ category }}</a></li>
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </section>

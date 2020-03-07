@@ -8,6 +8,7 @@ from blog.views import (
     BlogDeleteView,
     BlogLoginView,
     BlogLogoutView,
+    CategoryView,
 )
 
 app_name = 'blog'
@@ -20,4 +21,5 @@ urlpatterns = [
     path('create/', BlogCreateView.as_view(), name="create"),
     path('login/', BlogLoginView.as_view(), name="login"),
     path('logout/', BlogLogoutView.as_view(), name="logout"),
+    path('category/<int:pk>/', CategoryView.as_view(), name='category'),
 ]
