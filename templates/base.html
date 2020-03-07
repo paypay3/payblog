@@ -56,7 +56,7 @@
             <li><a href="{% url 'blog:logout' %}">ログアウト</a></li>
             {%  else %}
             {# ログインしていない時 #}
-            <li><a href="{% url 'blog:login' %}">ログイン</a></li>
+            <li><a href="{% url 'blog:login' %}?next={{ request.path }}">ログイン</a></li>
             {% endif %}
 
           </ul>
