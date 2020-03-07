@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.db.models import Q
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView
@@ -13,7 +14,13 @@ class BlogListView(ListView):
     paginate_by = 5
 
     def get_queryset(self):
-        return Post.objects.order_by('-created_at')
+        queryset = Post.objects.order_by('-created_at')
+        keyword = self.request.GET.get('keyword')
+        if keyword:
+            queryset = queryset.filter(
+                Q(title__icontains=keyword) | Q(text__icontains=keyword)
+            )
+        return queryset
 
 
 class CategoryView(ListView):
