@@ -16,6 +16,16 @@ class BlogListView(ListView):
         return Post.objects.order_by('-created_at')
 
 
+class CategoryView(ListView):
+    model = Post
+    paginate_by = 5
+
+    def get_queryset(self):
+        category_pk = self.kwargs['pk']
+        queryset = Post.objects.order_by('-created_at').filter(category__pk=category_pk)
+        return queryset
+
+
 class BlogDetailView(DetailView):
     model = Post
 
