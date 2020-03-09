@@ -22,3 +22,14 @@ class Post(models.Model):
 
     def summary(self):
         return self.text[:100]
+
+
+class Comment(models.Model):
+    name = models.CharField('名前', max_length=255, default="pay's friend")
+    text = models.TextField('本文')
+    post = models.ForeignKey(Post, verbose_name='対象記事', on_delete=models.CASCADE)
+    created_at = models.DateTimeField('作成日', default=timezone.now)
+    is_public = models.BooleanField('公開承認', default=False)
+
+    def __str__(self):
+        return self.name

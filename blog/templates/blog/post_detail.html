@@ -23,5 +23,36 @@
     <a href="{% url 'blog:delete' post.pk %}" class="btn btn-danger">削除</a>
     {% endif %}
 
+    <div class="comments">
+        {% for comment in post.comment_set.all %}
+        {% if comment.is_public %}
+        <div class="comment clearfix">
+            <div class="comment-content clearfix">
+                <div class="comment-author font-alt">
+                    <a href="#">{{ comment.name }}</a>
+                </div>
+                <div class="comment-body">
+                    <p>{{ comment.text | linebreaksbr }}</p>
+                </div>
+                <div class="comment-meta font-alt">{{comment.created_at}}
+                </div>
+                <hr>
+            </div>
+        </div>
+        {% else %}
+        <div class="comment clearfix">
+            <div class="comment-content clearfix">
+                <div class="comment-author font-alt">
+                    <p>まだ{{ comment.name }}さんのコメントは承認されていません。</p>
+                    <hr>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+
+    <div class="post-more"><a class="more-link" href="{% url 'blog:comment' post.pk %}">コメント投稿ページへ</a></div>
+
 </div>
 {% endblock %}
