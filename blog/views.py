@@ -6,8 +6,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
-from .forms import PostForm, CommentCreateForm
-from .models import Post, Comment
+from .forms import PostForm, CommentCreateForm, ReplyCreateForm
+from .models import Post, Comment, Reply
 
 
 class BlogListView(ListView):
@@ -102,3 +102,17 @@ class CommentView(CreateView):
         comment.post = get_object_or_404(Post, pk=post_pk)
         comment.save()
         return redirect('blog:detail', pk=post_pk)
+
+
+class ReplyView(CreateView):
+    model = Reply
+    form_class = ReplyCreateForm
+    template_name = "blog/comment_form.html"
+
+    def form_valid(self, form):
+        comment_pk = self.kwargs['comment_pk']
+        comment = get_object_or_404(Comment, pk=comment_pk)
+        reply = form.save(commit=False)
+        reply.comment = comment
+        reply.save()
+        return redirect('blog:detail', pk=comment.post.pk)

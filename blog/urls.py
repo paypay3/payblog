@@ -10,6 +10,7 @@ from blog.views import (
     BlogLogoutView,
     CategoryView,
     CommentView,
+    ReplyView,
 )
 
 app_name = 'blog'
@@ -24,4 +25,5 @@ urlpatterns = [
     path('logout/', BlogLogoutView.as_view(), name="logout"),
     path('category/<int:pk>/', CategoryView.as_view(), name='category'),
     path('comment/<int:post_pk>/', CommentView.as_view(), name='comment'),
+    path('reply/<int:comment_pk>/', ReplyView.as_view(), name='reply'),
 ]
