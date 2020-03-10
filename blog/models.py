@@ -33,3 +33,14 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Reply(models.Model):
+    name = models.CharField('名前', max_length=255, default="pay's friend")
+    text = models.TextField('本文')
+    comment = models.ForeignKey(Comment, verbose_name='対象コメント', on_delete=models.CASCADE)
+    created_at = models.DateTimeField('作成日', default=timezone.now)
+    is_public = models.BooleanField('公開承認', default=False)
+
+    def __str__(self):
+        return self.name

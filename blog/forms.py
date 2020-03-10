@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Post, Comment
+from .models import Post, Comment, Reply
 
 
 class PostForm(forms.ModelForm):
@@ -21,4 +21,16 @@ class CommentCreateForm(forms.ModelForm):
 
     class Meta:
         model = Comment
+        fields = ('name', 'text')
+
+
+class ReplyCreateForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'form-control'
+
+    class Meta:
+        model = Reply
         fields = ('name', 'text')
