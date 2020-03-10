@@ -85,5 +85,25 @@
     <a class="more-link" href="{% url 'blog:comment' post.pk %}">コメント投稿ページへ</a>
 </div>
 
+{% endblock %}
 
+
+{% block related_articles %}
+<div class="widget">
+    <h5 class="widget-title font-alt">関連記事</h5>
+    <ul class="widget-posts">
+        {% for rel_post in post.relation_posts.all %}
+        <li class="clearfix">
+            <div class="widget-posts-image"><a href="{% url 'blog:detail' rel_post.pk %}"><img
+                        src="{{ rel_post.image.url }}" alt="Post Thumbnail" /></a>
+            </div>
+            <div class="widget-posts-body">
+                <div class="widget-posts-title"><a href="{% url 'blog:detail' rel_post.pk %}">{{ rel_post.title }}</a>
+                </div>
+                <div class="widget-posts-meta">{{ rel_post.created_at }}</div>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
 {% endblock %}
