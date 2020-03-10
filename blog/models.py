@@ -16,6 +16,7 @@ class Post(models.Model):
     image = models.ImageField('画像ファイル', upload_to='images/')
     created_at = models.DateTimeField('作成日', default=timezone.now)
     category = models.ForeignKey(Category, verbose_name='カテゴリ', on_delete=models.PROTECT)
+    relation_posts = models.ManyToManyField('self', verbose_name='関連記事', blank=True)
 
     def __str__(self):
         return self.title
