@@ -13,12 +13,18 @@
   </div>
   <div class="post-header font-alt">
     <h2 class="post-title"><a href="{% url 'blog:detail' post.pk %}">{{ post.title }}</a></h2>
-    <div class="post-meta">By<a href="#">{{ user.username }}</a>| {{ post.created_at }} |
+    <div class="post-meta">By<a href="#">{{ user.username }}</a> | {{ post.created_at }} |
       {% for category in category_list %}
       {% if post.category == category %}
       <a href="{% url 'blog:category' category.pk %}">{{ post.category }}</a>
       {% endif %}
       {% endfor %}
+      <br><br>
+      <div class="tags font-serif">
+        {% for tag in post.tag.all %}
+        <a href="{% url 'blog:tag' tag.pk %}">{{ tag }}</a>
+        {% endfor %}
+      </div>
     </div>
   </div>
   <div class="post-entry">
