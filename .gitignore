@@ -4,8 +4,8 @@
 __pycache__/
 venv/
 media/
+migrations/
 db.sqlite3
-0001_initial.py
 .DS_Store
 .idea
 .vscode/
