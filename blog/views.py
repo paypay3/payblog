@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.db.models import Q
+from django.http import JsonResponse
 from django.urls import reverse_lazy
 from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -126,3 +127,13 @@ class ReplyView(CreateView):
         reply.comment = comment
         reply.save()
         return redirect('blog:detail', pk=comment.post.pk)
+
+
+def api_posts_get(request):
+    keyword = request.GET.get('keyword')
+    if keyword:
+        post_list = [{'pk': post.pk, 'name': str(post)}
+                     for post in Post.objects.filter(title__icontains=keyword)]
+    else:
+        post_list = []
+    return JsonResponse({'object_list': post_list})
