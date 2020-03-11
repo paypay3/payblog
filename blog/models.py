@@ -11,8 +11,8 @@ class Category(models.Model):
 
 
 class Tag(models.Model):
-    name = models.CharField(max_length=255)
-    created_at = models.DateTimeField(auto_now_add=True)
+    name = models.CharField('タグ名', max_length=255)
+    created_at = models.DateTimeField('作成日', default=timezone.now)
 
     def __str__(self):
         return self.name
