@@ -9,6 +9,7 @@ from blog.views import (
     BlogLoginView,
     BlogLogoutView,
     CategoryView,
+    TagView,
     CommentView,
     ReplyView,
 )
@@ -24,6 +25,7 @@ urlpatterns = [
     path('login/', BlogLoginView.as_view(), name="login"),
     path('logout/', BlogLogoutView.as_view(), name="logout"),
     path('category/<int:pk>/', CategoryView.as_view(), name='category'),
+    path('tag/<int:pk>/', TagView.as_view(), name='tag'),
     path('comment/<int:post_pk>/', CommentView.as_view(), name='comment'),
     path('reply/<int:comment_pk>/', ReplyView.as_view(), name='reply'),
 ]

@@ -12,6 +12,12 @@
             <a href="{% url 'blog:category' category.pk %}">{{ post.category }}</a>
             {% endif %}
             {% endfor %}
+            <br><br>
+            <div class="tags font-serif">
+                {% for tag in post.tag.all %}
+                <a href="{% url 'blog:tag' tag.pk %}">{{ tag }}</a>
+                {% endfor %}
+            </div>
         </div>
     </div>
     <div class="post-entry">
