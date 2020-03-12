@@ -1,5 +1,5 @@
 const remove = e => {
-    // 選択済みのアイテムをクリックした際、削除処理。
+    // 選択済みのアイテムをクリックした際、つまり削除処理。
     const suggestItem = e.target;
     const targetName = suggestItem.dataset.target;
     const pk = suggestItem.dataset.pk;
@@ -57,7 +57,10 @@ document.addEventListener('DOMContentLoaded', e => {
         // 全てのサジェスト入力欄に対しイベントを設定
         element.addEventListener('keyup', () => {
             const keyword = element.value;
-            const url = `${element.dataset.url}?keyword=${keyword}`;
+            let url = `${element.dataset.url}?keyword=${keyword}`;
+            if (element.dataset.instancepk) {
+                url += '&pk=' + element.dataset.instancepk;
+            }
             if (keyword) {
                 // 入力があるたびに、サーバーにそれを送信し、サジェスト候補を受け取る
                 fetch(url)
