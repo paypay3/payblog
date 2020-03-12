@@ -12,9 +12,13 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ["title", "text", "image", "created_at", "category", "tag", "relation_posts"]
-        widgets = {
-            'relation_posts': SuggestWidget(attrs={'data-url': reverse_lazy('blog:api_posts_get')}),
-        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        attrs = {'data-url': reverse_lazy('blog:api_posts_get')}
+        if self.instance.pk:
+            attrs['data-instancepk'] = self.instance.pk
+        self.fields['relation_posts'].widget = SuggestWidget(attrs=attrs)
 
 
 class CommentCreateForm(forms.ModelForm):
